@@ -1,15 +1,25 @@
-import express, { Request, Response } from 'express'
-import bodyParser from 'body-parser'
+import express from "express";
+import bodyParser from "body-parser";
+import userRouter from "./routes/users.route";
+import productRouter from "./routes/products.route";
+import orderRouter from "./routes/orders.route";
+import dotenv from "dotenv";
+import cors from "cors";
 
-const app: express.Application = express()
-const address: string = "0.0.0.0:3000"
+dotenv.config();
+const corsOptions = {
+  origin: "http://someothedomain.com",
+  optionsSuccessStatus: 200,
+};
 
-app.use(bodyParser.json())
+const app: express.Application = express();
 
-app.get('/', function (req: Request, res: Response) {
-    res.send('Hello World!')
-})
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use("/users", userRouter);
+app.use("/products", productRouter);
+app.use("/order", orderRouter);
 
-app.listen(3000, function () {
-    console.log(`starting app on: ${address}`)
-})
+app.listen(process.env.PORT, () => {
+  console.log(`App is running on http://localhost:${process.env.PORT}`);
+});
