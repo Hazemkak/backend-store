@@ -5,22 +5,25 @@ export const productCheckEntries = (
   res: Response,
   next: NextFunction
 ) => {
-  const { password, firstName, lastName, username } = req.body;
-  if (!password || !firstName || !lastName || !username) {
-    return res.status(400).json({
-      message: "firstName/lastName/password/username all are required",
-    });
-  }
+  const { name, price, category } = req.body;
+  try {
+    if (!name || !category) {
+      return res.status(400).json({
+        message: "name/category all are required",
+      });
+    }
 
-  if (firstName.length > 50 || lastName.length > 50 || username.length > 50)
-    return res.status(400).json({
-      message: "firstName/lastName/username must not exceed 50 characters",
-    });
+    if (name.length > 50 || category.length > 50)
+      return res.status(400).json({
+        message: "name/category must not exceed 50 characters",
+      });
 
-  if (password.length < 8) {
-    return res
-      .status(400)
-      .json({ message: "password should be at least 8 characters" });
+    if (Number(price) < 0)
+      return res.status(400).json({
+        message: "price must be a positive number",
+      });
+    next();
+  } catch (error) {
+    return res.status(400).json({ message: `error in the inputs ${error}` });
   }
-  next();
 };

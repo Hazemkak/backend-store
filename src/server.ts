@@ -18,8 +18,10 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/users", userRouter);
 app.use("/products", productRouter);
-app.use("/order", orderRouter);
+app.use("/orders", orderRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`App is running on http://localhost:${process.env.PORT}`);
 });
+
+export default app;

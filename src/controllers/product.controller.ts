@@ -41,16 +41,6 @@ const productControllerCreate = async (req: Request, res: Response) => {
   }
 };
 
-const productControllerTopFive = async (req: Request, res: Response) => {
-  try {
-    const productModel = new ProductModel();
-    const products = await productModel.findTopFive();
-    res.status(200).json({ products });
-  } catch (error) {
-    res.status(500).json(`error while getting top 5 product ${error}`);
-  }
-};
-
 const productControllerByCategory = async (req: Request, res: Response) => {
   try {
     const { category } = req.params;
@@ -66,6 +56,5 @@ export {
   productControllerShow,
   productControllerIndex,
   productControllerCreate,
-  productControllerTopFive,
   productControllerByCategory,
 };

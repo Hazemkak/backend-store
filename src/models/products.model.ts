@@ -16,14 +16,14 @@ export interface ProductInput {
 export class ProductModel {
   async create(product: ProductInput): Promise<Product> {
     const conn = await db.connect();
-    const sql = `INSERT INTO products (name,price,category) VALUES('${product.name}',${product.price},'${product.category}') RETURNING *;`;
+    const sql = `INSERT INTO product (name,price,category) VALUES('${product.name}',${product.price},'${product.category}') RETURNING *;`;
     const products = await conn.query(sql);
     conn.release();
     return products.rows[0];
   }
   async index(): Promise<Product[]> {
     const conn = await db.connect();
-    const sql = `SELECT * FROM products;`;
+    const sql = `SELECT * FROM product;`;
     const products = await conn.query(sql);
     conn.release();
     return products.rows;
@@ -31,7 +31,7 @@ export class ProductModel {
 
   async show(id: string): Promise<Product> {
     const conn = await db.connect();
-    const sql = `SELECT * FROM products WHERE id=${id};`;
+    const sql = `SELECT * FROM product WHERE id=${id};`;
     const products = await conn.query(sql);
     conn.release();
     return products.rows[0];
@@ -39,14 +39,9 @@ export class ProductModel {
 
   async findByCategory(category: string): Promise<Product[]> {
     const conn = await db.connect();
-    const sql = `SELECT * FROM products WHERE category='${category}';`;
+    const sql = `SELECT * FROM product WHERE category='${category}';`;
     const products = await conn.query(sql);
     conn.release();
     return products.rows;
-  }
-
-  async findTopFive(): Promise<Product[]> {
-    const products = await [];
-    return products;
   }
 }

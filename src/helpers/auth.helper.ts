@@ -30,9 +30,7 @@ export class AuthHelper {
   }
 
   static generateToken(id: number): string {
-    const token: string = jwt.sign({ id }, String(process.env.USER_SECRET), {
-      expiresIn: Number(process.env.JWT_EXPIRES),
-    });
+    const token: string = jwt.sign({ id }, String(process.env.USER_SECRET));
     return token;
   }
 

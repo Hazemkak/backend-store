@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AuthHelper } from "../helpers/auth.helper";
 import { UserModel } from "../models/users.model";
 
-const userControllerIndex = async (req: Request, res: Response) => {
+const userControllerIndex = async (_req: Request, res: Response) => {
   try {
     const userModel = new UserModel();
     const users = await userModel.index();
