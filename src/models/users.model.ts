@@ -1,5 +1,4 @@
 import db from "../database";
-import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { AuthHelper } from "../helpers/auth.helper";
 

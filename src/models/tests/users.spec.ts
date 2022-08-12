@@ -1,14 +1,6 @@
-import { User, UserModel } from "../users.model";
+import { UserModel } from "../users.model";
 
 const user = new UserModel();
-
-const fakeUser: User = {
-  firstName: "first",
-  lastName: "last",
-  password: "fakePassword",
-  username: "user4",
-  id: 1,
-};
 
 describe("User Model", () => {
   it("should have an index method", () => {
@@ -28,7 +20,7 @@ describe("User Model", () => {
   });
 
   it("create method should throw error if username is duplicated", async () => {
-    const result = await user.create({
+    await user.create({
       firstName: "name0",
       lastName: "name1",
       username: "user0",
@@ -54,7 +46,7 @@ describe("User Model", () => {
 
   it("should return error if user is not found ", async () => {
     try {
-      const result = await user.show(5);
+      await user.show(5);
     } catch (error) {
       expect(error).toBeTruthy();
     }

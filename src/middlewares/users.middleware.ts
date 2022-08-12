@@ -13,11 +13,9 @@ export const userCheckEntries = (
   }
 
   if (firstName.length > 50 || lastName.length > 50 || username.length > 50)
-    return res
-      .status(400)
-      .json({
-        message: "firstName/lastName/username must not exceed 50 characters",
-      });
+    return res.status(400).json({
+      message: "firstName/lastName/username must not exceed 50 characters",
+    });
 
   if (password.length < 8) {
     return res
