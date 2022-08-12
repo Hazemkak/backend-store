@@ -16,8 +16,9 @@ USER_SECRET= "enter user secret any string"
 JWT_EXPIRES=14d
 3- create a database with a name similar to one of env variable POSTGRES_DATABASE
 4- create a database with a name similar to one of env variable POSTGRES_DATABASE_TEST
-5- db-migrate up "to apply migrations to database"
-6- yarn start
+5- update the database.json in the root Dir with your database info in the .env
+6- db-migrate up "to apply migrations to database"
+7- yarn start
 
 ## database is running on PORT 127.0.0.1 & backend is running on PORT 3000
 
@@ -44,37 +45,37 @@ JWT_EXPIRES=14d
 - http://localhost:3000/orders/create -create order "look at postman-collection for more info about the body of request"
 
 ## DATABASE SCHEMA
-- USER
-CREATE TABLE USERS(
-    ID SERIAL PRIMARY KEY,
-    FIRSTNAME VARCHAR(50) NOT NULL,
-    LASTNAME VARCHAR(50) NOT NULL,
-    USERNAME VARCHAR(50) UNIQUE NOT NULL ,
-    PASSWORD TEXT NOT NULL
-);
-- PRODUCTS
-CREATE TABLE PRODUCT(
-    ID SERIAL PRIMARY KEY,
-    NAME VARCHAR(50) NOT NULL,
-    PRICE VARCHAR(50) NOT NULL,
-    CATEGORY VARCHAR(50) NOT NULL
-);
-- ORDERS
-CREATE TYPE delivery_status 
-AS ENUM ('active', 'complete');
-CREATE TABLE ORDERS(
-    ID SERIAL PRIMARY KEY,
-    USER_ID INT NOT NULL REFERENCES USERS(ID),
-    STATUS delivery_status
-);
-- ORDERS_PRODUCTS "to reference between the order_id & products included in it"
-CREATE TABLE ORDERS_PRODUCTS(
-    ORDER_ID INT NOT NULL REFERENCES ORDERS(ID),
-    PRODUCT_ID INT NOT NULL REFERENCES PRODUCT(ID),
-    CONSTRAINT PK_ORDERS_PRODUCTS PRIMARY KEY (ORDER_ID ,PRODUCT_ID ),
-    QUANTITY INT NOT NULL
-);
 
+- USER
+  CREATE TABLE USERS(
+  ID SERIAL PRIMARY KEY,
+  FIRSTNAME VARCHAR(50) NOT NULL,
+  LASTNAME VARCHAR(50) NOT NULL,
+  USERNAME VARCHAR(50) UNIQUE NOT NULL ,
+  PASSWORD TEXT NOT NULL
+  );
+- PRODUCTS
+  CREATE TABLE PRODUCT(
+  ID SERIAL PRIMARY KEY,
+  NAME VARCHAR(50) NOT NULL,
+  PRICE VARCHAR(50) NOT NULL,
+  CATEGORY VARCHAR(50) NOT NULL
+  );
+- ORDERS
+  CREATE TYPE delivery_status
+  AS ENUM ('active', 'complete');
+  CREATE TABLE ORDERS(
+  ID SERIAL PRIMARY KEY,
+  USER_ID INT NOT NULL REFERENCES USERS(ID),
+  STATUS delivery_status
+  );
+- ORDERS_PRODUCTS "to reference between the order_id & products included in it"
+  CREATE TABLE ORDERS_PRODUCTS(
+  ORDER_ID INT NOT NULL REFERENCES ORDERS(ID),
+  PRODUCT_ID INT NOT NULL REFERENCES PRODUCT(ID),
+  CONSTRAINT PK_ORDERS_PRODUCTS PRIMARY KEY (ORDER_ID ,PRODUCT_ID ),
+  QUANTITY INT NOT NULL
+  );
 
 ## Project structure & how to get user token
 
