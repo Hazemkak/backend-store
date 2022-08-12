@@ -3,7 +3,10 @@
   "spec_files": [
     "**/users.spec.js",
     "**/products.spec.js",
-    "**/users.orders.js"
+    "**/orders.spec.js",
+    "**/usersRoute.spec.js",
+    "**/productsRoute.spec.js",
+    "**/ordersRoute.spec.js"
   ],
   "helpers": ["helpers/**/*.js"],
   "stopSpecOnExpectationFailure": false,
