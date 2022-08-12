@@ -30,3 +30,7 @@ login with the username & password through endpoint /users/login "look up the po
 ## To run the test
 
 yarn test
+
+## TO build project
+
+yarn build "you will find the compiled project in the dist folder in the root dir"
