@@ -1,1 +1,2 @@
 DROP TABLE ORDERS;
+DROP TYPE delivery_status;

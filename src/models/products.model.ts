@@ -19,7 +19,12 @@ export class ProductModel {
     const sql = `INSERT INTO product (name,price,category) VALUES('${product.name}',${product.price},'${product.category}') RETURNING *;`;
     const products = await conn.query(sql);
     conn.release();
-    return products.rows[0];
+    return {
+      id: Number(products.rows[0].id),
+      price: Number(products.rows[0].price),
+      name: String(products.rows[0].name),
+      category: String(products.rows[0].category),
+    };
   }
   async index(): Promise<Product[]> {
     const conn = await db.connect();
@@ -29,12 +34,17 @@ export class ProductModel {
     return products.rows;
   }
 
-  async show(id: string): Promise<Product> {
+  async show(id: number): Promise<Product> {
     const conn = await db.connect();
     const sql = `SELECT * FROM product WHERE id=${id};`;
     const products = await conn.query(sql);
     conn.release();
-    return products.rows[0];
+    return {
+      id: Number(products.rows[0].id),
+      price: Number(products.rows[0].price),
+      name: String(products.rows[0].name),
+      category: String(products.rows[0].category),
+    };
   }
 
   async findByCategory(category: string): Promise<Product[]> {

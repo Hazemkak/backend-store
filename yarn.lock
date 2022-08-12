@@ -1804,7 +1804,7 @@ jasmine-ts@^0.4.0:
   dependencies:
     yargs "^17.0.1"
 
-jasmine@^4.2.1:
+jasmine@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-4.3.0.tgz#f99e9bc2a94e8281d2490482d53a3406760bd7f4"
   integrity sha512-ieBmwkd8L1DXnvSnxx7tecXgA0JDgMXPAwBcqM4lLPedJeI9hTHuWifPynTC+dLe4Y+GkSPSlbqqrmYIgGzYUw==

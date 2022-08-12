@@ -1,6 +1,6 @@
 import db from "../database";
 
-enum Status {
+export enum Status {
   "ACTIVE" = "active",
   "COMPLETE" = "complete",
 }
@@ -17,14 +17,14 @@ export interface InputOrder {
 }
 
 export class OrderModel {
-  async currentOrdersByUser(id: string): Promise<Orders[]> {
+  async currentOrdersByUser(id: number): Promise<Orders[]> {
     const conn = await db.connect();
     const sql = `SELECT * FROM orders WHERE USER_ID=${id} AND STATUS='${Status.ACTIVE}' ;`;
     const orders = await conn.query(sql);
     conn.release();
     return orders.rows;
   }
-  async completeOrdersByUser(id: string): Promise<Orders[]> {
+  async completeOrdersByUser(id: number): Promise<Orders[]> {
     const conn = await db.connect();
     const sql = `SELECT * FROM orders WHERE USER_ID=${id} AND STATUS='${Status.COMPLETE}' ;`;
     const orders = await conn.query(sql);

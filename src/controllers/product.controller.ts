@@ -15,7 +15,7 @@ const productControllerShow = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const productModel = new ProductModel();
-    const product = await productModel.show(id);
+    const product = await productModel.show(Number(id));
     if (!product)
       res.status(400).json({ message: `product ${id} isn't found` });
     res.status(200).json(product);

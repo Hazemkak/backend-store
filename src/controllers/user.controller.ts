@@ -16,7 +16,7 @@ const userControllerShow = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userModel = new UserModel();
-    const user = await userModel.show(id);
+    const user = await userModel.show(Number(id));
     if (!user) res.status(400).json({ message: `user ${id} isn't found` });
     res.status(200).json(user);
   } catch (error) {
