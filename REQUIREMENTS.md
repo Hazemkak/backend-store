@@ -8,23 +8,23 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Products
 
-- http://localhost:3000/products -Index
-- http://localhost:3000/products/:id -Show
-- http://localhost:3000/products/create -Create [token required]
-- http://localhost:3000/products/category/:category -[OPTIONAL] Products by category (args: product category) #TODO:
+- GET http://localhost:3000/products -Index
+- GET http://localhost:3000/products/:id -Show
+- POST http://localhost:3000/products/create -Create [token required]
+- GET http://localhost:3000/products/category/:category -[OPTIONAL] Products by category (args: product category) #TODO:
 
 #### Users
 
-- http://localhost:3000/users -Index [token required]
-- http://localhost:3000/users/:id -Show [token required]
-- http://localhost:3000/users/create -Create N[token required]
-- http://localhost:3000/users/login -Login
+- GET http://localhost:3000/users -Index [token required]
+- GET http://localhost:3000/users/:id -Show [token required]
+- POST http://localhost:3000/users/create -Create N[token required]
+- POST http://localhost:3000/users/login -Login
 
 #### Orders
 
-- http://localhost:3000/orders/active/:user_id -Current Order by user (args: user id)[token required]
-- http://localhost:3000/orders/complete/:user_id -[OPTIONAL] Completed Orders by user (args: user id)[token required]
-- http://localhost:3000/orders/create -create order "look at postman-collection for more info about the body of request"
+- GET http://localhost:3000/orders/active/:user_id -Current Order by user (args: user id)[token required]
+- GET http://localhost:3000/orders/complete/:user_id -[OPTIONAL] Completed Orders by user (args: user id)[token required]
+- POST http://localhost:3000/orders/create -create order "look at postman-collection for more info about the body of request"
 
 ## Data Shapes
 

@@ -1,11 +1,11 @@
 ## running the project command
 
-1- yarn "to install packages"
-2- create a .env file with env variables including:
+- yarn "to install packages"
+- create a .env file with env variables including:
 POSTGRES_USERNAME=postgres
 POSTGRES_DATABASE=store
 POSTGRES_DATABASE_TEST=store_test
-POSTGRES_HOST=127.0.0.1
+POSTGRES_HOST=127.0.0.1 "database port"
 POSTGRES_PASS= "enter db password"
 PORT=3000
 NODE_ENV=DEV
@@ -14,35 +14,38 @@ SALT_ROUNDS=10
 PEPPER=some_pepper
 USER_SECRET= "enter user secret any string"
 JWT_EXPIRES=14d
-3- create a database with a name similar to one of env variable POSTGRES_DATABASE
-4- create a database with a name similar to one of env variable POSTGRES_DATABASE_TEST
-5- update the database.json in the root Dir with your database info in the .env
-6- db-migrate up "to apply migrations to database"
-7- yarn start
+- create a database with a name similar to one of env variable POSTGRES_DATABASE
+- create a database with a name similar to one of env variable POSTGRES_DATABASE_TEST
+- update the database.json in the root Dir with your database info in the .env
+- db-migrate up "to apply migrations to database"
+- yarn start "to run application"
 
-## database is running on PORT 127.0.0.1 & backend is running on PORT 3000
+## database PORT in ENV variables:
+POSTGRES_HOST=127.0.0.1 "database port"
+## application PORT in ENV variables:
+PORT=3000
 
 ## API Endpoints
 
 #### Products
 
-- http://localhost:3000/products -Index
-- http://localhost:3000/products/:id -Show
-- http://localhost:3000/products/create -Create [token required]
-- http://localhost:3000/products/category/:category -[OPTIONAL] Products by category (args: product category) #TODO:
+- GET http://localhost:3000/products -Index
+- GET http://localhost:3000/products/:id -Show
+- POST http://localhost:3000/products/create -Create [token required]
+- GET http://localhost:3000/products/category/:category -[OPTIONAL] Products by category (args: product category) #TODO:
 
 #### Users
 
-- http://localhost:3000/users -Index [token required]
-- http://localhost:3000/users/:id -Show [token required]
-- http://localhost:3000/users/create -Create N[token required]
-- http://localhost:3000/users/login -Login
+- GET http://localhost:3000/users -Index [token required]
+- GET http://localhost:3000/users/:id -Show [token required]
+- POST http://localhost:3000/users/create -Create N[token required]
+- POST http://localhost:3000/users/login -Login
 
 #### Orders
 
-- http://localhost:3000/orders/active/:user_id -Current Order by user (args: user id)[token required]
-- http://localhost:3000/orders/complete/:user_id -[OPTIONAL] Completed Orders by user (args: user id)[token required]
-- http://localhost:3000/orders/create -create order "look at postman-collection for more info about the body of request"
+- GET http://localhost:3000/orders/active/:user_id -Current Order by user (args: user id)[token required]
+- GET http://localhost:3000/orders/complete/:user_id -[OPTIONAL] Completed Orders by user (args: user id)[token required]
+- POST http://localhost:3000/orders/create -create order "look at postman-collection for more info about the body of request"
 
 ## DATABASE SCHEMA
 
